@@ -16,7 +16,7 @@ public class LeaftapsCreateLead {
 		 
 		 WebDriverManager.chromedriver().setup();
 		 
-		 ChromeDriver driver=new ChromeDriver(); 
+		 ChromeDriver driver= new ChromeDriver(); 
 		 
 		 driver.get("http://leaftaps.com/opentaps");
 		 
@@ -36,12 +36,18 @@ public class LeaftapsCreateLead {
 		 driver.findElement(By.linkText("Leads")).click();
 		 driver.findElement(By.linkText("Create Lead")).click();
 		 driver.findElement(By.id("createLeadForm_companyName")).sendKeys("Cognizant");
-		 driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Gnana");
-		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("Prasuna");
+		
+		 WebElement name = driver.findElement(By.id("createLeadForm_firstName"));
+		 name.sendKeys("Gnana");
+		 String firstName = name.getAttribute("value");
+
+		 System.out.println("The first Name is " + firstName);
+		 
+		 driver.findElement(By.id("createLeadForm_lastName")).sendKeys("Prasuna");
 		 
 		 WebElement countryCode = driver.findElement(By.id("createLeadForm_primaryPhoneCountryCode"));
-			countryCode.clear();
-			countryCode.sendKeys("5");
+		 countryCode.clear();
+		 countryCode.sendKeys("5");
 		 
 		 WebElement sourceId = driver.findElement(By.id("createLeadForm_dataSourceId"));
          Select sourceId1 = new Select(sourceId);
@@ -94,13 +100,8 @@ public class LeaftapsCreateLead {
          Select stateProvince1 = new Select(stateProvince);
          stateProvince1.selectByIndex(4);
 		 
-		 driver.findElement(By.className("smallSubmit")).click();	
-		 
-		 WebElement name = driver.findElement(By.id("viewLead_firstNameLocal_sp"));
-		 String FirstNameLocal = name.getText();
-		 
-		 System.out.println("The first Name is " + FirstNameLocal);
-         
+         driver.findElement(By.className("smallSubmit")).click();	
+		
 	}
 
 }
